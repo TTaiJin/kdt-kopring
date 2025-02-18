@@ -1,5 +1,11 @@
 package com.ll.domain.post.post.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import com.ll.domain.member.member.entity.Member;
 import com.ll.domain.post.comment.entity.PostComment;
 import com.ll.domain.post.genFile.entity.PostGenFile;
@@ -8,23 +14,20 @@ import com.ll.global.jpa.entity.BaseTime;
 import com.ll.global.rsData.RsData;
 import com.ll.standard.base.Empty;
 import com.ll.standard.util.Ut;
-import jakarta.persistence.*;
-import lombok.Builder;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @Setter
-@SuperBuilder
 @NoArgsConstructor
 public class Post extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,11 +40,9 @@ public class Post extends BaseTime {
     private String content;
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-    @Builder.Default
     private List<PostComment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-    @Builder.Default
     private List<PostGenFile> genFiles = new ArrayList<>();
 
     // OneToOne 은 레이지 로딩이 안된다.
@@ -51,6 +52,14 @@ public class Post extends BaseTime {
     private boolean published;
 
     private boolean listed;
+
+    public Post(Member author, String title, String content, boolean published, boolean listed) {
+        this.author = author;
+        this.title = title;
+        this.content = content;
+        this.published = published;
+        this.listed = listed;
+    }
 
     public PostComment addComment(Member author, String content) {
         PostComment comment = new PostComment(
