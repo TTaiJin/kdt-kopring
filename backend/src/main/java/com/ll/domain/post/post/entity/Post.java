@@ -53,11 +53,11 @@ public class Post extends BaseTime {
     private boolean listed;
 
     public PostComment addComment(Member author, String content) {
-        PostComment comment = PostComment.builder()
-                .post(this)
-                .author(author)
-                .content(content)
-                .build();
+        PostComment comment = new PostComment(
+            this,
+            author,
+            content
+        );
 
         comments.add(comment);
 

@@ -4,17 +4,16 @@ import com.ll.domain.member.member.entity.Member;
 import com.ll.domain.post.post.entity.Post;
 import com.ll.global.exceptions.ServiceException;
 import com.ll.global.jpa.entity.BaseTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@SuperBuilder
 @NoArgsConstructor
 public class PostComment extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,6 +24,12 @@ public class PostComment extends BaseTime {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    public PostComment(Post post, Member author, String content) {
+        this.post = post;
+        this.author = author;
+        this.content = content;
+    }
 
     public void modify(String content) {
         this.content = content;
