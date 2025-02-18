@@ -161,12 +161,11 @@ public class Post extends BaseTime {
         int fileSize = Ut.file.getFileSize(filePath);
         fileNo = fileNo == 0 ? getNextGenFileNo(typeCode) : fileNo;
 
-        PostGenFile genFile = isModify ? oldPostGenFile : PostGenFile
-                .builder()
-                .post(this)
-                .typeCode(typeCode)
-                .fileNo(fileNo)
-                .build();
+        PostGenFile genFile = isModify ? oldPostGenFile : new PostGenFile(
+            this,
+            typeCode,
+            fileNo
+        );
 
         genFile.setOriginalFileName(originalFileName);
         genFile.setMetadata(metadataStr);

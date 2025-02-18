@@ -2,16 +2,25 @@ package com.ll.domain.post.genFile.entity;
 
 import com.ll.domain.base.genFile.genFile.entity.GenFile;
 import com.ll.domain.post.post.entity.Post;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@SuperBuilder
 @NoArgsConstructor
 public class PostGenFile extends GenFile {
+    public PostGenFile(Post post, TypeCode typeCode, int fileNo) {
+        super(fileNo);
+        this.post = post;
+        this.typeCode = typeCode;
+    }
+
     public enum TypeCode {
         attachment,
         thumbnail
