@@ -1,10 +1,9 @@
 package com.ll.domain.post.genFile.controller;
 
-import com.ll.domain.member.member.service.MemberService;
-import com.ll.domain.post.genFile.entity.PostGenFile;
-import com.ll.domain.post.post.entity.Post;
-import com.ll.domain.post.post.service.PostService;
-import com.ll.standard.util.Ut;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.ll.domain.member.member.service.MemberService;
+import com.ll.domain.post.genFile.entity.PostGenFile;
+import com.ll.domain.post.post.entity.Post;
+import com.ll.domain.post.post.service.PostService;
+import com.ll.standard.util.Ut;
 
 @SpringBootTest
 @ActiveProfiles("test")
