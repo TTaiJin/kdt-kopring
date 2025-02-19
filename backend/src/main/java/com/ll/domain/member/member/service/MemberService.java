@@ -1,19 +1,21 @@
 package com.ll.domain.member.member.service;
 
-import com.ll.domain.member.member.entity.Member;
-import com.ll.domain.member.member.repository.MemberRepository;
-import com.ll.global.exceptions.ServiceException;
-import com.ll.standard.search.MemberSearchKeywordTypeV1;
-import lombok.RequiredArgsConstructor;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import com.ll.domain.member.member.entity.Member;
+import com.ll.domain.member.member.repository.MemberRepository;
+import com.ll.global.exceptions.ServiceException;
+import com.ll.standard.search.MemberSearchKeywordTypeV1;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +30,7 @@ public class MemberService {
     public Member join(String username, String password, String nickname, String profileImgUrl) {
         memberRepository
                 .findByUsername(username)
-                .ifPresent(_ -> {
+                .ifPresent(ignored -> {
                     throw new ServiceException("409-1", "해당 username은 이미 사용중입니다.");
                 });
 
