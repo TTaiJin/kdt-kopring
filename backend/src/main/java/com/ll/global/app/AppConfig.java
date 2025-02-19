@@ -1,14 +1,16 @@
 package com.ll.global.app;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-import lombok.SneakyThrows;
 import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.Getter;
+import lombok.SneakyThrows;
 
 @Configuration
 public class AppConfig {
@@ -59,16 +61,22 @@ public class AppConfig {
         AppConfig.siteFrontUrl = siteFrontUrl;
     }
 
-    @Getter
     private static String siteBackUrl;
+
+    public static String getSiteBackUrl() {
+        return siteBackUrl;
+    }
 
     @Value("${custom.site.backUrl}")
     public void setSiteBackUrl(String siteBackUrl) {
         AppConfig.siteBackUrl = siteBackUrl;
     }
 
-    @Getter
     public static String genFileDirPath;
+
+    public static String getGenFileDirPath() {
+        return genFileDirPath;
+    }
 
     @Value("${custom.genFile.dirPath}")
     public void setGenFileDirPath(String genFileDirPath) {

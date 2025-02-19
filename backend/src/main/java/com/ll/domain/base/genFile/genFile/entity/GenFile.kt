@@ -1,0 +1,37 @@
+package com.ll.domain.base.genFile.genFile.entity;
+
+import com.ll.global.app.AppConfig
+import com.ll.global.jpa.entity.BaseTime
+import com.ll.standard.util.Ut
+
+abstract class GenFile: BaseTime {
+    var fileNo: Int = 0
+    lateinit var originalFileName: String;
+    lateinit var metadata: String
+    lateinit var fileDateDir: String;
+    lateinit var fileExt: String;
+    lateinit var  fileExtTypeCode: String;
+    lateinit var fileExtType2Code: String;
+    lateinit var fileName: String;
+    var fileSize: Int = 0
+
+    constructor(fileNo: Int) {
+        this.fileNo = fileNo;
+    }
+
+    val filePath: String
+        get() = AppConfig.getGenFileDirPath() + "/" + getModelName() + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName
+
+    val ownerModelName: String
+        get() = this.getModelName().replace("GenFile", "")
+
+    val downloadUrl: String
+        get() = AppConfig.getSiteBackUrl() + "/" + ownerModelName + "/genFile/download/" + getOwnerModelId() + "/" + fileName
+
+    val publicUrl: String
+        get() = AppConfig.getSiteBackUrl() + "/gen/" + getModelName() + "/" + getTypeCodeAsStr() + "/" + fileDateDir + "/" + fileName + "?modifyDate=" + Ut.date.patternOf(modifyDate, "yyyy-MM-dd--HH-mm-ss") + "&" + metadata
+
+    abstract protected fun getOwnerModelId(): Long
+
+    abstract protected fun getTypeCodeAsStr(): String
+}

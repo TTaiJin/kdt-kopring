@@ -24,7 +24,7 @@ public abstract class BaseTime extends BaseEntity {
 
     @LastModifiedDate
     @Setter(AccessLevel.PRIVATE)
-    private LocalDateTime modifyDate;
+    public LocalDateTime modifyDate; // TODO: 추후에 작업해야함
 
     public void setCreateDateNow() {
         this.createDate = LocalDateTime.now();
