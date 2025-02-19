@@ -1,4 +1,4 @@
-package com.ll.global.jpa.entity;
+package com.ll.global.jpa.entity
 
 import com.ll.standard.util.Ut
 import jakarta.persistence.*
@@ -23,12 +23,10 @@ abstract class BaseEntity {
 
         other as BaseEntity
 
-        if (id == null || other.id == null) return false
-
         return id == other.id
     }
 
     override fun hashCode(): Int {
-        return id?.hashCode() ?: System.identityHashCode(this)
+        return _id?.hashCode() ?: 0
     }
 }

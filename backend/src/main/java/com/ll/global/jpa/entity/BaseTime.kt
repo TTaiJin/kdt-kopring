@@ -1,4 +1,4 @@
-package com.ll.global.jpa.entity;
+package com.ll.global.jpa.entity
 
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.MappedSuperclass
@@ -11,10 +11,10 @@ import java.time.LocalDateTime
 @MappedSuperclass
 abstract class BaseTime: BaseEntity() {
     @CreatedDate
-    lateinit var createDate: LocalDateTime;
+    lateinit var createDate: LocalDateTime
 
     @LastModifiedDate
-    lateinit var modifyDate: LocalDateTime;
+    lateinit var modifyDate: LocalDateTime
 
     fun setCreateDateNow() {
         this.createDate = LocalDateTime.now()
