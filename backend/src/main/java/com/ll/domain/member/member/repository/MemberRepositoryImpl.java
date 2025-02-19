@@ -1,5 +1,12 @@
 package com.ll.domain.member.member.repository;
 
+import static com.ll.domain.member.member.entity.QMember.*;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.support.PageableExecutionUtils;
+
 import com.ll.domain.member.member.entity.Member;
 import com.ll.standard.search.MemberSearchKeywordTypeV1;
 import com.querydsl.core.BooleanBuilder;
@@ -8,13 +15,8 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.support.PageableExecutionUtils;
 
-import static com.ll.domain.member.member.entity.QMember.member;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class MemberRepositoryImpl implements MemberRepositoryCustom {
