@@ -1,5 +1,23 @@
 package com.ll.domain.post.genFile.controller;
 
+import static org.springframework.http.MediaType.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.lang.NonNull;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ll.domain.member.member.entity.Member;
 import com.ll.domain.post.genFile.dto.PostGenFileDto;
 import com.ll.domain.post.genFile.entity.PostGenFile;
@@ -11,19 +29,11 @@ import com.ll.global.rq.Rq;
 import com.ll.global.rsData.RsData;
 import com.ll.standard.base.Empty;
 import com.ll.standard.util.Ut;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.lang.NonNull;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @RestController
 @RequestMapping("/api/v1/posts/{postId}/genFiles")
@@ -194,7 +204,7 @@ public class ApiV1PostGenFileController {
 
         PostGenFile postGenFile = post.putGenFile(typeCode, fileNo, filePath);
 
-        boolean justCreated = postGenFile.getId() == null;
+        boolean justCreated = postGenFile.getId() == 0;
 
         if (typeCode == PostGenFile.TypeCode.thumbnail) {
             // 만약에 등록된게 썸네일 이라면

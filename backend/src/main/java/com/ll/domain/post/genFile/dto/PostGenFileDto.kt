@@ -21,10 +21,10 @@ data class PostGenFileDto(
     val publicUrl: String
 ) {
     constructor(postGenFile: PostGenFile) : this(
-        id = postGenFile.id!!,
+        id = postGenFile.id,
         createDate = postGenFile.createDate,
         modifyDate = postGenFile.modifyDate,
-        postId = postGenFile.post.id!!,
+        postId = postGenFile.post.id,
         fileName = postGenFile.fileName,
         typeCode = postGenFile.typeCode,
         fileExtTypeCode = postGenFile.fileExtTypeCode,

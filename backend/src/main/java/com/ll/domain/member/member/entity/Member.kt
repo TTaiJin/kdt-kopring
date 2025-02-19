@@ -27,7 +27,7 @@ class Member : BaseTime {
         get() = nickname
 
     constructor(id: Long, username: String, nickname: String) {
-        this.id = id
+        this._id = id
         this.username = username
         this.nickname = nickname
         this.profileImgUrl = "" // TODO: 추후에 어떻게 할지 고민
