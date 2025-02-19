@@ -37,12 +37,14 @@ class Rq(
         )
         SecurityContextHolder.getContext().authentication = authentication
     }
+
     val actor: Member?
         get() {
             return (SecurityContextHolder.getContext().authentication?.principal as? SecurityUser)?.let {
                 Member(it.id, it.username, it.nickname)
             }
         }
+
     fun setCookie(name: String, value: String) {
         val cookie = ResponseCookie.from(name, value)
             .path("/")
@@ -53,9 +55,11 @@ class Rq(
             .build()
         resp.addHeader("Set-Cookie", cookie.toString())
     }
+
     fun getCookieValue(name: String): String? {
         return req.cookies?.find { it.name == name }?.value
     }
+
     fun deleteCookie(name: String) {
         val cookie = ResponseCookie.from(name, "")
             .path("/")
@@ -67,17 +71,21 @@ class Rq(
             .build()
         resp.addHeader("Set-Cookie", cookie.toString())
     }
+
     fun setHeader(name: String, value: String) {
         resp.setHeader(name, value)
     }
+
     fun getHeader(name: String): String? {
         return req.getHeader(name)
     }
+
     fun refreshAccessToken(member: Member) {
         val newAccessToken = memberService.genAccessToken(member)
         setHeader("Authorization", "Bearer ${member.apiKey} $newAccessToken")
         setCookie("accessToken", newAccessToken)
     }
+
     fun makeAuthCookies(member: Member): String {
         val accessToken = memberService.genAccessToken(member)
         setCookie("apiKey", member.apiKey)
