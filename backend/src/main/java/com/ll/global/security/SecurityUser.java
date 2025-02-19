@@ -1,18 +1,19 @@
 package com.ll.global.security;
 
-import lombok.Getter;
+import java.util.Collection;
+import java.util.Map;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.Collection;
-import java.util.Map;
+import lombok.Getter;
 
 public class SecurityUser extends User implements OAuth2User {
     @Getter
-    private long id;
+    public long id;
     @Getter
-    private String nickname;
+    public String nickname;
 
     public SecurityUser(
             long id,
