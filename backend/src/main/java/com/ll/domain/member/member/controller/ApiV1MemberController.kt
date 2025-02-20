@@ -49,7 +49,6 @@ class ApiV1MemberController(
         @field:NotBlank val password: String
     )
 
-    @JvmRecord
     data class MemberLoginResBody(
         val item: MemberDto,
         val apiKey: String,
