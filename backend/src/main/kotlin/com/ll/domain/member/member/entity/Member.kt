@@ -51,7 +51,7 @@ class Member : BaseTime {
     val authorities: Collection<GrantedAuthority?>
         get() = authoritiesAsStringList
             .stream()
-            .map { role: String -> SimpleGrantedAuthority(role) }
+            .map { SimpleGrantedAuthority(it) }
             .toList()
 
     val authoritiesAsStringList: List<String>

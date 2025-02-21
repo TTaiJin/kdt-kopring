@@ -147,7 +147,7 @@ class Post : BaseTime {
         val fileExtType2Code = Ut.file.getFileExtType2CodeFromFileExt(fileExt)
 
         var metadataStr = Ut.file.getMetadata(filePath).entries.stream()
-            .map { entry -> entry.key + "=" + entry.value }
+            .map { it.key + "=" + it.value }
             .collect(Collectors.joining("&"))
 
         if (Ut.str.isNotBlank(metadataStrFromFileName)) {
